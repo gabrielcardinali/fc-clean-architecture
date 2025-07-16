@@ -1,11 +1,5 @@
 import CreateProductUseCase from "./create.product.usecase";
 
-const input = {
-  name: "teste",
-  type: "a",
-  price: 1245,
-};
-
 const MockRepository = () => {
   return {
     find: jest.fn(),
@@ -20,6 +14,12 @@ describe("Unit test create product use case", () => {
     const productRepository = MockRepository();
     const productCreateUseCase = new CreateProductUseCase(productRepository);
 
+    const input = {
+      name: "test",
+      type: "a",
+      price: 1245,
+    };
+
     const output = await productCreateUseCase.execute(input);
 
     expect(output).toEqual({
@@ -29,22 +29,30 @@ describe("Unit test create product use case", () => {
     });
   });
 
-  it("should thrown an error when name is missing", async () => {
+  it("should throw an error when name is missing", async () => {
     const productRepository = MockRepository();
     const productCreateUseCase = new CreateProductUseCase(productRepository);
 
-    input.name = "";
+    const input = {
+      name: "",
+      type: "a",
+      price: 1245,
+    };
 
     await expect(productCreateUseCase.execute(input)).rejects.toThrow(
       "Name is required"
     );
   });
 
-  it("should thrown an error when price is missing", async () => {
+  it("should throw an error when price is negative", async () => {
     const productRepository = MockRepository();
     const productCreateUseCase = new CreateProductUseCase(productRepository);
 
-    input.price = -1;
+    const input = {
+      name: "test",
+      type: "a",
+      price: -1,
+    };
 
     await expect(productCreateUseCase.execute(input)).rejects.toThrow(
       "Price must be greater than zero"

@@ -2,3 +2,5 @@ node_modules
 .vscode
 .swc
 dist
+dist/tsconfig.tsbuildinfo
+package-lock.json
