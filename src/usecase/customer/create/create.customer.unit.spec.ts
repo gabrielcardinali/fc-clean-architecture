@@ -29,7 +29,7 @@ describe("Unit test create customer use case", () => {
       id: expect.any(String),
       name: input.name,
       address: {
-        street: input.address.street,
+        street: input.address.street, 
         number: input.address.number,
         zip: input.address.zip,
         city: input.address.city,
