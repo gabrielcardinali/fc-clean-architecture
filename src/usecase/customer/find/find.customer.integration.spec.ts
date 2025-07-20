@@ -16,7 +16,7 @@ describe("Test find customer use case", () => {
       sync: { force: true },
     });
 
-    await sequelize.addModels([CustomerModel]);
+    sequelize.addModels([CustomerModel]);
     await sequelize.sync();
   });
 
